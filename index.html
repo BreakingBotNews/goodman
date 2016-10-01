@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <style>	@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,700);</style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <title>breakingBot.news</title>
+</head>
+<body>
+<div id="loading"> <h1>Loading ...</h1>
+    <div id="progressbar"></div>
+    <script>
+        //JQuerry UI init
+        $( "#progressbar" ).progressbar({
+            value: false
+        });
+        $( document ).tooltip();
+    </script>
+</div>
+<div id="welcome">
+    <h1>Please login to facebook</h1>
+    <p id="welcomeText">We will ask you to grant permission to the following facebook data: <strong>Your public profile, hometown, location and likes.</strong>
+        <br>We need this data to personalize your experience. We strongly recommend you to share your data. <br>
+        We will only use your data to serve you personalized news. The data will be stored on our server. <br>
+        You can read our Privacy Policy here. Thank you! </p>
+    <button onclick="app.social.fbLoginButton()">Login to facebook</button>
+</div>
+<script>
+    //making loading screen 100% of viewport
+    document.querySelector("#loading").style.height=window.innerHeight+"px";
+    document.querySelector("#loading").style.width=window.innerWidth+"px";
+</script>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<div id="outer">
+    <div id="inner">
+        <h1>Settings</h1>
+        <p>
+            See the last articles we send you and which themes we think you are interested in.
+        </p>
+        <div id="articles">
+
+        </div>
+        <div id="themes">
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(app.main.init);
+</script>
+</body>
+</html>
