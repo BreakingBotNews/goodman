@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Selectable - Serialize</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+        body {width: 100%; height: 100%; overflow: auto}
+        #feedback { font-size: 1.4em; }
+        #selectable{width: 100%; height: 90%}
+        #selectable .ui-selecting { background: #FECA40; }
+        #selectable .ui-selected { background: #F39814; color: white; }
+        #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+        #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; float: left; width: 300px; }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        $( function() {
+            $( "#selectable" ).selectable({
+                stop: function() {
+                    var result=[];
+                    $( ".ui-selected", this ).each(function(i) {
+                        var x = $(this).attr('id');
+                        x = x.slice(1);
+                        result[i]= parseInt(x);
+                    });
+                    app.sections = result;
+                }
+            });
+        } );
+    </script>
+</head>
+<body>
+
+<p id="feedback">
+    <span id="cat"></span><button onclick="app.api.writeData()" title="Save and Next Category">Next</button>
+</p>
+
+<ol id="selectable">
+    <li class="ui-widget-content">Item 1</li>
+    <li class="ui-widget-content">Item 2</li>
+    <li class="ui-widget-content">Item 3</li>
+    <li class="ui-widget-content">Item 4</li>
+    <li class="ui-widget-content">Item 5</li>
+    <li class="ui-widget-content">Item 6</li>
+</ol>
+
+<script>
+    $(document).ready(app.main.init);
+</script>
+</body>
+</html>
